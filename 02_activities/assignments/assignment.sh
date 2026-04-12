@@ -18,6 +18,7 @@ cd newproject
 
 mkdir analysis output
 touch README.md
+echo "# Project Name: DSI Consulting Inc." > README.md
 touch analysis/main.py
 
 # download client data
@@ -49,6 +50,7 @@ find data/raw -type f -iname "*user*.log" -exec cp {} data/processed/user_logs/ 
 find data/raw -type f -iname "*event*.log" -exec cp {} data/processed/event_logs/ \;
 
 # 7. For user privacy, remove all files containing IP addresses (files with "ipaddr" in the filename) from ./data/raw and ./data/processed/user_logs
+
 rm -f data/raw/*ipaddr*
 rm -f data/processed/user_logs/*ipaddr*
 
