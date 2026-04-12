@@ -35,33 +35,26 @@ mv rawdata raw
 mv raw data
 
 # 3. List the contents of the ./data/raw directory
-cd data
-cd raw
-ls
+ls data/raw
 
 # 4. Create the directory ./data/processed, 
 #    then create the following sub-directories within it: server_logs, user_logs, and event_logs
-cd ..
-mkdir processed
-cd processed
-mkdir server_logs user_logs event_logs
+mkdir -p data/processed/server_logs data/processed/user_logs data/processed/event_logs
 
 # 5. Copy all server log files (files with "server" in the name AND a .log extension) from ./data/raw to ./data/processed/server_logs
-find /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/raw -type f -iname "*server*.log" -exec cp {} /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/processed/server_logs/ \;
+find data/raw -type f -iname "*server*.log" -exec cp {} data/processed/server_logs/ \;
 
 # 6. Repeat the above step for user logs and event logs
-find /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/raw -type f -iname "*user*.log" -exec cp {} /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/processed/user_logs/ \;
-find /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/raw -type f -iname "*event*.log" -exec cp {} /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/processed/event_logs/ \;
+find data/raw -type f -iname "*user*.log" -exec cp {} data/processed/user_logs/ \;
+find data/raw -type f -iname "*event*.log" -exec cp {} data/processed/event_logs/ \;
 
 # 7. For user privacy, remove all files containing IP addresses (files with "ipaddr" in the filename) from ./data/raw and ./data/processed/user_logs
-rm /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/raw/*ipaddr*
-rm /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/processed/user_logs/*ipaddr*
+rm -f data/raw/*ipaddr*
+rm -f data/processed/user_logs/*ipaddr*
 
 # 8. Create a file named ./data/inventory.txt that lists all the files in the subfolders of ./data/processed
-cd /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data
-touch inventory.txt
-ls -R /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/processed >> /Users/mtp/Desktop/DSI/Assignments/Assignment1/shell/02_activities/assignments/newproject/data/inventory.txt
-
+touch data/inventory.txt
+ls -R data/processed >> data/inventory.txt
 
 ###########################################
 
