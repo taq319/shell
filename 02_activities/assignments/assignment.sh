@@ -61,3 +61,9 @@ ls -R data/processed >> data/inventory.txt
 ###########################################
 
 echo "Project setup is complete!"
+
+#adding some code in the script for part 2
+
+git pull https://github.com/UofT-DSI/shell coworker-changes --no-rebase
+git status
+git add assignment.sh
